@@ -4,7 +4,7 @@
 ## Overview
 We open a TensorFlow Python source file for Rotated Word Vector Representations and their Interpretability.
 
-The paper is published in EMNLP 2017. [<a href="">paper</a>]
+The paper is published in EMNLP 2017. [<a href="http://aclweb.org/anthology/D17-1041">paper</a>, <a href="https://sungjoonpark.github.io./assets/emnlp2017_poster.pdf">poster</a>]
 
 These files are originated in a Python version of the gradient projection rotation
 algorithms (GPA) developed by Bernaards, C.A. and Jennrich, R.I.
