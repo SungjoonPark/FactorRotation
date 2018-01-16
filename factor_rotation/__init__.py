@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 """
 Package with factor rotation algorithms.
 
@@ -23,6 +22,5 @@ References
 [5] http://www.stat.ucla.edu/research/gpa/GPderfree.txt
 """
 
-#__all__ = ['wrappers']
 from __future__ import absolute_import
 from factor_rotation._wrappers import rotate_factors

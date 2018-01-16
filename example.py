@@ -2,14 +2,12 @@ import sys
 sys.path.append(".")
 import gensim
 import numpy as np
-import pandas as pd
 import factor_rotation as fr
-from sklearn.decomposition import PCA
 
 
 def load_word2vec_model():
     print('loading the model...')
-    model = gensim.models.Word2Vec.load_word2vec_format(MODEL_FILE, binary=True)
+    model = gensim.models.KeyedVectors.load_word2vec_format(MODEL_FILE, binary=True)
     print('pre-trained word2vec model loaded...')
     return model
 
@@ -59,7 +57,6 @@ def main():
     del model
     del word_list
 
-    # rescaling
     print('rescaling...')
     scale = .01
     unrotated *= scale
@@ -67,13 +64,13 @@ def main():
     print(np.min(unrotated))
 
     print('start rotating...')
-    mat_L, mat_T = method_dic[method_name](unrotated)
+    mat_L, mat_T, *_ = method_dic[method_name](unrotated)
     export_numpy_array('{}_axis.npy'.format(method_name), mat_T)
     export_numpy_array('{}_rotated.npy'.format(method_name), mat_L)
 
 
 if __name__ == '__main__':
-    MODEL_FILE = 'GoogleNews-vectors-negative300.bin'
+    MODEL_FILE = './text8_word2vec_50_5_100.csv'
     SAVE_PATH = './'
     method_dic = {"varimax": varimax, "quartimax": quartimax, "parsimony": parsimony, "parsimax":parsimax}
     method_name = "parsimax"
