@@ -14,20 +14,18 @@ https://github.com/mvds314/factor_rotation
 
 
 ## Requirements
-- Python 3
-- TensorFlow 1.0
-- NumPy
-- gensim
-- pandas
+- Python 3.6.3
+- TensorFlow 1.4
+- NumPy 1.13.3
+- gensim 3.1.0
 
 
 ## How to Run
 First, you should bring input word vector representation.
 
 Input of the program is word vector representation.
-Output of the program is rotated word vector representation.
-The format of the file is same as input one.
-
+'text8_word2vec_50_5_100.csv' file is example input file.
+Output of the program is rotated word vector representation saved as numpy matrix file.
 
 
 ### Run the program
