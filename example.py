@@ -7,7 +7,7 @@ import factor_rotation as fr
 
 def load_word2vec_model():
     print('loading the model...')
-    model = gensim.models.KeyedVectors.load_word2vec_format(MODEL_FILE, binary=True)
+    model = gensim.models.KeyedVectors.load_word2vec_format(MODEL_FILE, binary=False)
     print('pre-trained word2vec model loaded...')
     return model
 
