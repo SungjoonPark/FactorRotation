@@ -39,15 +39,15 @@ by importing the library. A is input word vector matrix, and the output T is rot
 
 
 ### Small Tips
-1. Normalizing the input matrix (word vectors) before computing a rotation matrix T improves performance. In the example, all of the elements in the unrorated word vector matrix are divided by the maximum value of that matrix, to ensure that all values are between from -1 to 1.
+1. Normalizing the input matrix (word vectors) before computing a rotation matrix T improves performance. In the example, all of the elements in the unrotated word vector matrix are divided by the maximum value of that matrix, to ensure that all values are between from -1 to 1.
 
-2. The size of the input word vector matrix matters. If the size rather small, like (10000, 300), the algorithm will easily converge within a few hours with GPU support. However, if the matrix gets larger (N of word vectors > 100000, Number of dimensions > 500), it might take 1~2 day of training time to obtain resonable results.
+2. The size of the input word vector matrix matters. If the size rather small, like (10000, 300), the algorithm will easily converge within a few hours with GPU support. However, if the matrix gets larger (N of word vectors > 100000, Number of dimensions > 500), it might take 1~2 day of training time to obtain reasonable results.
 
-3. You can adjust parameters of the function `GPA`, such as `tol` or `max_tries` to find better solution of T.
+3. You can adjust parameters of the function `GPA`, such as `tol` or `max_tries` to find a better solution of T.
 
 ## Update log
 12.23.18: To address some code maintenance issues, we change our implementation from Tensorflow to PyTorch.
 
 ## Reference
 
-Robert I Jennrich. 2001. A simple general procedurefor orthogonal rotation. Psychometrika66(2):289–306
+Robert I Jennrich. 2001. A simple general procedure for orthogonal rotation. Psychometrika66(2):289–306
