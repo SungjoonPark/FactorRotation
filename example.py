@@ -2,6 +2,7 @@ import sys
 sys.path.append(".")
 import gensim
 import numpy as np
+import torch
 import factor_rotation as fr
 
 
@@ -14,6 +15,7 @@ def load_word2vec_model():
 
 def export_numpy_array(filename, np_array):
     print('exporting the array (' + filename + ') ...')
+    np_array = np_array.cpu().numpy()
     np.save(SAVE_PATH + filename, np_array)
 
 
@@ -32,22 +34,22 @@ def unrotated_reps(model):
 
 def varimax(unrotated):
     print('starting varimax rotation...')
-    return fr.rotate_factors(unrotated, 'varimax_CF')
+    return fr.rotate_factors(unrotated, 'varimax', dtype=torch.float64, device=torch.device("cuda"))
 
 
 def parsimony(unrotated):
     print('starting factor parsimony rotation...')
-    return fr.rotate_factors(unrotated, 'parsimony')
+    return fr.rotate_factors(unrotated, 'parsimony', dtype=torch.float64, device=torch.device("cuda"))
 
 
 def parsimax(unrotated):
     print('starting factor parsimax rotation...')
-    return fr.rotate_factors(unrotated, 'parsimax')
+    return fr.rotate_factors(unrotated, 'parsimax', dtype=torch.float64, device=torch.device("cuda"))
 
 
 def quartimax(unrotated):
     print('starting factor quartimax rotation...')
-    return fr.rotate_factors(unrotated, 'quartimax_CF')
+    return fr.rotate_factors(unrotated, 'quartimax', dtype=torch.float64, device=torch.device("cuda"))
 
 
 def main():
@@ -58,15 +60,15 @@ def main():
     del word_list
 
     print('rescaling...')
-    scale = .01
-    unrotated *= scale
+    unrotated /= np.max(np.abs(unrotated))
     print(np.max(unrotated))
     print(np.min(unrotated))
 
     print('start rotating...')
-    mat_L, mat_T, *_ = method_dic[method_name](unrotated)
+    mat_L, mat_T = method_dic[method_name](unrotated)
+    export_numpy_array('{}_rotated_vectors.npy'.format(method_name), mat_L)
     export_numpy_array('{}_axis.npy'.format(method_name), mat_T)
-    export_numpy_array('{}_rotated.npy'.format(method_name), mat_L)
+
 
 
 if __name__ == '__main__':
