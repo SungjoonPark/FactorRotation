@@ -2,7 +2,7 @@
 
 
 ## Overview
-We open a PyTorch Python source code for our paper, Rotated Word Vector Representations and their Interpretability (EMNLP 2017) [<a href="http://aclweb.org/anthology/D17-1041">paper</a>, <a href="https://sungjoonpark.github.io./assets/emnlp2017_poster.pdf">poster</a>] These files are originated from Python (numpy) implementation of rotation algorithms, to accelerate computation speed by using GPU. https://github.com/mvds314/factor_rotation
+We open a Python (PyTorch) source code for our paper, Rotated Word Vector Representations and their Interpretability (EMNLP 2017) [<a href="http://aclweb.org/anthology/D17-1041">paper</a>, <a href="https://sungjoonpark.github.io./assets/emnlp2017_poster.pdf">poster</a>] These files are originated from Python (Numpy) implementation of rotation algorithms, to accelerate computation speed by using GPU. https://github.com/mvds314/factor_rotation
 
 
 ## Requirements
@@ -46,7 +46,7 @@ by importing the library. A is input word vector matrix, and the output T is rot
 3. You can adjust parameters of the function `GPA`, such as `tol` or `max_tries` to find better solution of T.
 
 ## Update log
-12.23.18: To address some code maintenance issues, we change our implementation from Tensorflow to PyTorch. 
+12.23.18: To address some code maintenance issues, we change our implementation from Tensorflow to PyTorch.
 
 ## Reference
 
