@@ -105,11 +105,10 @@ def CF_objective(L=None, A=None, T=None, kappa=0, rotation_method='orthogonal',
         N = torch.ones((k,k), dtype=dtype, device=device) - torch.eye(k, dtype=dtype, device=device)
         X = (1 - kappa) * torch.matmul(L2, N)
     if not torch.abs(torch.tensor(kappa - 0, dtype=dtype, device=device)) <= (1e-08 + 1e-05*torch.abs(torch.tensor(0, dtype=dtype, device=device))):
-        M = torch.ones((p,p), dtype=dtype, device=device) - torch.eye(p, dtype=dtype, device=device)
         if X is None:
-            X = kappa * torch.matmul(M, L2)
+            X = kappa * (torch.sum(L2, dim=0, keepdim=True).repeat(p, 1) - L2)
         else:
-            X += kappa * torch.matmul(M, L2)
+            X += kappa * (torch.sum(L2, dim=0, keepdim=True).repeat(p, 1) - L2)
     phi = torch.sum(L2 * X)/4
     if return_gradient:
         Gphi = L * X
